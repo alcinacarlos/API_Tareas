@@ -26,14 +26,14 @@
 
 ## Usuario
 
-| Campo         | Tipo       | Descripción                                |
-|---------------|------------|--------------------------------------------|
-| **_id**       | String?    | Identificador único en MongoDB             |
-| **username**  | String     | Nombre de usuario (único)                  |
-| **password**  | String     | Contraseña del usuario                     |
-| **email**     | String     | Correo electrónico del usuario (único)     |
-| **roles**     | String?    | Rol asignado al usuario (USER por defecto) |
-| **direccion** | Direccion? | Dirección del usuario (opcional)           |
+| Campo         | Tipo      | Descripción                                |
+|---------------|-----------|--------------------------------------------|
+| **_id**       | String?   | Identificador único en MongoDB             |
+| **username**  | String    | Nombre de usuario (único)                  |
+| **password**  | String    | Contraseña del usuario                     |
+| **email**     | String    | Correo electrónico del usuario (único)     |
+| **roles**     | String?   | Rol asignado al usuario (USER por defecto) |
+| **direccion** | Direccion | Dirección del usuario                      |
 
 
 ---
