@@ -1,7 +1,6 @@
 # TaskMaster
 ## Descripción de los documentos
 ## Direccion
-Representa una dirección postal
 
 | Campo         | Tipo   | Descripción               |
 |---------------|--------|---------------------------|
@@ -13,7 +12,6 @@ Representa una dirección postal
 
 ---
 ## Tarea
-Representa una tarea dentro del sistema
 
 | Campo           | Tipo    | Descripción                           |
 |-----------------|---------|---------------------------------------|
@@ -27,7 +25,6 @@ Representa una tarea dentro del sistema
 ---
 
 ## Usuario
-Representa un usuario dentro del sistema.
 
 | Campo         | Tipo       | Descripción                                |
 |---------------|------------|--------------------------------------------|
