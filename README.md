@@ -89,15 +89,17 @@
 ---
 
 # Pruebas gestión usuarios
+- Contraseña no coincide
+  ![Imagen](./images/passworddontmatch.png)
 - Usuario ya registrado
-  ![Imagen](./images/errorregistrar1.png)
+  ![Imagen](./images/yaregistrado.png)
 - Email inválido
   ![Imagen](./images/errormail.png)
 - Municipio inválido
   ![Imagen](./images/errormunicipio.png)
 - Usuario registrado correctamente
   ![Imagen](./images/usuariocreado.png)
-- ![Imagen](./images/usuarioenmongo.png)
+  ![Imagen](./images/usuarioenmongo.png)
 - Usuario logeado
     ![Imagen](./images/usuariologeado.png)
 - Credenciales inválidas

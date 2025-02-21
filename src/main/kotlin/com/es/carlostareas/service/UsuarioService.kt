@@ -41,8 +41,7 @@ class UsuarioService : UserDetailsService {
 
     fun insertUser(usuarioInsertadoDTO: UsuarioRegisterDTO) : UsuarioDTO {
 
-        // COMPROBACIONES
-        // Comprobar si los campos vienen vacíos
+
         if (usuarioInsertadoDTO.username.isBlank()
             || usuarioInsertadoDTO.email.isBlank()
             || usuarioInsertadoDTO.password.isBlank()
@@ -55,9 +54,8 @@ class UsuarioService : UserDetailsService {
             throw BadRequestException("Email ${usuarioInsertadoDTO.email} incorrecto")
         }
 
-        // Fran ha comprobado que el usuario existe previamente
         if(usuarioRepository.findByUsername(usuarioInsertadoDTO.username).isPresent) {
-            throw Exception("Usuario ${usuarioInsertadoDTO.username} ya está registrado")
+            throw BadRequestException("Usuario ${usuarioInsertadoDTO.username} ya está registrado")
         }
 
         // comprobar que ambas passwords sean iguales
@@ -71,9 +69,8 @@ class UsuarioService : UserDetailsService {
         }
 
         // Comprobar el EMAIL
-
         if(usuarioRepository.findByEmail(usuarioInsertadoDTO.email).isPresent) {
-            throw Exception("Usuario ${usuarioInsertadoDTO.email} ya está registrado")
+            throw BadRequestException("Usuario ${usuarioInsertadoDTO.email} ya está registrado")
         }
 
         // Comprobar la provincia
