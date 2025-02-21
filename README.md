@@ -90,17 +90,19 @@
 
 # Pruebas gestión usuarios
 - Contraseña no coincide
-  ![Imagen](./images/passworddontmatch.png)
+  ![img.png](images/ui/img.png)
+  ![Imagen](images/insomnia/passworddontmatch.png)
 - Usuario ya registrado
-  ![Imagen](./images/yaregistrado.png)
+  ![yaregistrado.png](images/ui/yaregistrado.png)
+  ![Imagen](images/insomnia/yaregistrado.png)
 - Email inválido
-  ![Imagen](./images/errormail.png)
+  ![Imagen](images/insomnia/errormail.png)
 - Municipio inválido
-  ![Imagen](./images/errormunicipio.png)
+  ![Imagen](images/insomnia/errormunicipio.png)
 - Usuario registrado correctamente
-  ![Imagen](./images/usuariocreado.png)
-  ![Imagen](./images/usuarioenmongo.png)
+  ![Imagen](images/insomnia/usuariocreado.png)
+  ![Imagen](images/insomnia/usuarioenmongo.png)
 - Usuario logeado
-    ![Imagen](./images/usuariologeado.png)
+    ![Imagen](images/insomnia/usuariologeado.png)
 - Credenciales inválidas
-    ![Imagen](./images/credencialesincorrectas.png)
+    ![Imagen](images/insomnia/credencialesincorrectas.png)
