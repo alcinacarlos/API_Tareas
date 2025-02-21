@@ -96,8 +96,10 @@
   ![yaregistrado.png](images/ui/yaregistrado.png)
   ![Imagen](images/insomnia/yaregistrado.png)
 - Email inválido
+  ![img_1.png](images/ui/img_1.png)
   ![Imagen](images/insomnia/errormail.png)
 - Municipio inválido
+  ![img_2.png](images/ui/img_2.png)
   ![Imagen](images/insomnia/errormunicipio.png)
 - Usuario registrado correctamente
   ![Imagen](images/insomnia/usuariocreado.png)
