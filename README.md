@@ -80,10 +80,25 @@
 ---
 
 
-## Seguridad en la API REST
+# Seguridad en la API REST
 - Uso de **JWT** para autenticación y autorización
 - Encriptación de contraseñas con **BCryptPasswordEncoder**
 - Restricción de acceso a endpoints según el rol del usuario
 - Validación de datos en las solicitudes
 
 ---
+
+# Pruebas gestión usuarios
+- Usuario ya registrado
+  ![Imagen](./images/errorregistrar1.png)
+- Email inválido
+  ![Imagen](./images/errormail.png)
+- Municipio inválido
+  ![Imagen](./images/errormunicipio.png)
+- Usuario registrado correctamente
+  ![Imagen](./images/usuariocreado.png)
+- ![Imagen](./images/usuarioenmongo.png)
+- Usuario logeado
+    ![Imagen](./images/usuariologeado.png)
+- Credenciales inválidas
+    ![Imagen](./images/credencialesincorrectas.png)

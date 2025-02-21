@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import utils.Utils
 
 @Service
 class UsuarioService : UserDetailsService {
@@ -50,6 +51,10 @@ class UsuarioService : UserDetailsService {
             throw BadRequestException("Uno o más campos vacíos")
         }
 
+        if (!Utils.isEmailValid(usuarioInsertadoDTO.email)) {
+            throw BadRequestException("Email ${usuarioInsertadoDTO.email} incorrecto")
+        }
+
         // Fran ha comprobado que el usuario existe previamente
         if(usuarioRepository.findByUsername(usuarioInsertadoDTO.username).isPresent) {
             throw Exception("Usuario ${usuarioInsertadoDTO.username} ya está registrado")
@@ -68,7 +73,7 @@ class UsuarioService : UserDetailsService {
         // Comprobar el EMAIL
 
         if(usuarioRepository.findByEmail(usuarioInsertadoDTO.email).isPresent) {
-            throw Exception("Usuario ${usuarioInsertadoDTO.username} ya está registrado")
+            throw Exception("Usuario ${usuarioInsertadoDTO.email} ya está registrado")
         }
 
         // Comprobar la provincia
