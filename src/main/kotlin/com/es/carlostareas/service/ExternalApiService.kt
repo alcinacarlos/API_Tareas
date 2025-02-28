@@ -18,7 +18,7 @@ class ExternalApiService(private val webClient: WebClient.Builder) {
             .uri("https://apiv1.geoapi.es/provincias?type=JSON&key=$apiKey")
             .retrieve()
             .bodyToMono(DatosProvincias::class.java)
-            .block() // ⚠️ Esto bloquea el hilo, usar `subscribe()` en código reactivo
+            .block()
     }
 
     fun obtenerMunicipiosDesdeApi(cpro: String): DatosMunicipios? {
@@ -27,6 +27,6 @@ class ExternalApiService(private val webClient: WebClient.Builder) {
             .uri("https://apiv1.geoapi.es/municipios?CPRO=${cpro}&type=JSON&key=$apiKey")
             .retrieve()
             .bodyToMono(DatosMunicipios::class.java)
-            .block() // ⚠️ Esto bloquea el hilo, usar `subscribe()` en código reactivo
+            .block()
     }
 }

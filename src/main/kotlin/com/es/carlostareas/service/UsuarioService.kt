@@ -50,25 +50,26 @@ class UsuarioService : UserDetailsService {
             throw BadRequestException("Uno o más campos vacíos")
         }
 
+        // Comprobar email válido
         if (!Utils.isEmailValid(usuarioInsertadoDTO.email)) {
             throw BadRequestException("Email ${usuarioInsertadoDTO.email} incorrecto")
         }
-
+        // Comprobar si el usuario ya existe
         if(usuarioRepository.findByUsername(usuarioInsertadoDTO.username).isPresent) {
             throw BadRequestException("Usuario ${usuarioInsertadoDTO.username} ya está registrado")
         }
 
-        // comprobar que ambas passwords sean iguales
+        // Comprobar que ambas passwords sean iguales
         if(usuarioInsertadoDTO.password != usuarioInsertadoDTO.passwordRepeat) {
             throw BadRequestException("Las contrasenias no coinciden")
         }
 
-        // Comprobar el ROL
+        // Comprobar el rol
         if(usuarioInsertadoDTO.rol != null && usuarioInsertadoDTO.rol != "USER" && usuarioInsertadoDTO.rol != "ADMIN" ) {
             throw BadRequestException("ROL: ${usuarioInsertadoDTO.rol} incorrecto")
         }
 
-        // Comprobar el EMAIL
+        // Comprobar el email
         if(usuarioRepository.findByEmail(usuarioInsertadoDTO.email).isPresent) {
             throw BadRequestException("Usuario ${usuarioInsertadoDTO.email} ya está registrado")
         }
@@ -94,12 +95,11 @@ class UsuarioService : UserDetailsService {
                 datosMunicipios.data.stream().filter {
                     it.DMUN50 == usuarioInsertadoDTO.direccion.municipio.uppercase()
                 }.findFirst().orElseThrow {
-                    BadRequestException("Municipio ${usuarioInsertadoDTO.direccion.municipio} incorrecto")
+                    BadRequestException("Municipio ${usuarioInsertadoDTO.direccion.municipio} no se encuentra en ${usuarioInsertadoDTO.direccion.provincia}")
                 }
             }
         }
 
-        // Insertar el user (convierto a Entity)
         val usuario = Usuario(
              null,
             usuarioInsertadoDTO.username,
@@ -109,10 +109,8 @@ class UsuarioService : UserDetailsService {
             usuarioInsertadoDTO.direccion
         )
 
-        // inserto en bd
         usuarioRepository.insert(usuario)
 
-        // retorno un DTO
         return UsuarioDTO(
             usuario.username,
             usuario.email,

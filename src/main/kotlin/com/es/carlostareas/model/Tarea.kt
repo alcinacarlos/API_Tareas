@@ -9,6 +9,6 @@ data class Tarea(
     val _id: String?,
     val titulo: String,
     val descripcion: String,
-    val usuarioId: String, // Relación con Usuario
+    val usuarioId: String, // Relación con Usuºario
     val completada: Boolean = false
 )
