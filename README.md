@@ -108,3 +108,122 @@
     ![Imagen](images/insomnia/usuariologeado.png)
 - Credenciales inválidas
     ![Imagen](images/insomnia/credencialesincorrectas.png)
+
+# PRUEBAS GESTIÓN TAREAS
+## Pruebas para Usuario con Rol `USER`
+
+### 1. Ver todas sus tareas
+**Descripción:** Se realiza una solicitud para obtener todas las tareas del usuario autenticado.
+- **Método:** `GET /tareas`
+- **Respuesta esperada:** Lista de tareas pertenecientes al usuario.
+- **Código de estado esperado:** `200 OK`
+
+  ![Imagen](images/insomnia/vertareas.png)
+#### ❌ Errores posibles
+Esto pasa en todas la ruta `/tareas` y solo lo voy a incluir aquí por no repetir lo mismo todo el rato
+1. **Usuario no autenticado**
+- **Código de estado esperado:** `401 Unathorized`
+
+  ![Imagen](images/insomnia/vertareaserror.png)
+
+### 2. Marcar como hecha una tarea propia
+**Descripción:** Un usuario intenta marcar como completada una de sus tareas.
+- **Método:** `PUT /tareas/{id}/completar`
+- **Respuesta esperada:** Confirmación de la actualización.
+- **Código de estado esperado:** `200 OK`
+
+  ![Imagen](images/insomnia/completada.png)
+
+
+#### ❌ Errores posibles
+1. **Tarea no encontrada**
+  - **Código de estado esperado:** `400 Bad Request`
+  - **Mensaje esperado:** "Tarea no encontrada"
+
+    ![Imagen](images/insomnia/completadanoencontrada.png)
+
+
+2. **Intento de marcar como hecha una tarea que no es suya**
+  - **Código de estado esperado:** `401 Unauthorized`
+  - **Mensaje esperado:** "No puedes marcar como hecha una tarea que no es tuya"
+
+    ![Imagen](images/insomnia/completadanotuya.png)
+
+### 3. Eliminar una tarea propia
+**Descripción:** Un usuario intenta eliminar una de sus tareas.
+- **Método:** `DELETE /tareas/{id}`
+- **Respuesta esperada:** Confirmación de eliminación.
+- **Código de estado esperado:** `200 OK`
+
+  ![Imagen](images/insomnia/eliminar.png)
+
+#### ❌ Errores posibles
+1. **Tarea no encontrada**
+  - **Código de estado esperado:** `400 Bad Request`
+  - **Mensaje esperado:** "Tarea no encontrada"
+
+    ![Imagen](images/insomnia/eliminarnoencontrada.png)
+
+
+2. **Intento de eliminar tarea de otro usuario**
+  - **Código de estado esperado:** `403 Forbidden`
+  - **Mensaje esperado:** "No puedes eliminar una tarea que no es tuya"
+
+    ![Imagen](images/insomnia/eliminarnotuya.png)
+
+### 4. Darse de alta a sí mismo una tarea
+**Descripción:** Un usuario crea una nueva tarea para sí mismo.
+- **Método:** `POST /tareas`
+- **Cuerpo:** `{ "titulo": "Nueva tarea", "descripcion": "Descripción de la tarea" }`
+- **Respuesta esperada:** Confirmación de creación.
+- **Código de estado esperado:** `201 Created`
+
+  ![Imagen](images/insomnia/alta.png)
+
+
+#### ❌ Errores posibles
+1. **Intento de crear una tarea para otro usuario**
+  - **Código de estado esperado:** `401 Unauthorized`
+  - **Mensaje esperado:** "No puedes asignar tareas a otro usuario"
+
+    ![Imagen](images/insomnia/altanotuya.png)
+
+---
+
+## Pruebas para Usuario con Rol `ADMIN`
+
+### 1. Ver todas las tareas
+**Descripción:** Un administrador obtiene todas las tareas de todos los usuarios.
+- **Método:** `GET /tareas`
+- **Respuesta esperada:** Lista de todas las tareas en la base de datos.
+- **Código de estado esperado:** `200 OK`
+
+  ![Imagen](images/insomnia/vertareasadmin.png)
+
+
+### 2. Eliminar cualquier tarea de cualquier usuario
+**Descripción:** Un administrador elimina una tarea específica, en este caso un admin elimina la tarea de un NO ADMIN
+- **Método:** `DELETE /tareas/{id}`
+- **Respuesta esperada:** Confirmación de eliminación.
+- **Código de estado esperado:** `200 OK`
+
+  ![Imagen](images/insomnia/eliminar.png)
+
+
+#### ❌ Errores posibles
+1. **Tarea no encontrada**
+  - **Código de estado esperado:** `400 Bad Request`
+  - **Mensaje esperado:** "Tarea no encontrada"
+
+    ![Imagen](images/insomnia/eliminarnoencontrada.png)
+
+### 3. Dar de alta tareas a cualquier usuario
+**Descripción:** Un administrador crea una tarea para un usuario específico, en este caso un usuario no admin
+- **Método:** `POST /tareas`
+- **Cuerpo:** `TareaInsertDTO`
+- **Respuesta esperada:** Confirmación de creación.
+- **Código de estado esperado:** `201 Created`
+
+  ![Imagen](images/insomnia/altaadmin.png)
+
+

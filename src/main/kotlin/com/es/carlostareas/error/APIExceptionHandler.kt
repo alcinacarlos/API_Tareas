@@ -1,6 +1,7 @@
 package com.es.carlostareas.error
 
 import com.es.carlostareas.error.exception.BadRequestException
+import com.es.carlostareas.error.exception.Forbidden
 import com.es.carlostareas.error.exception.UnauthorizedException
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import com.mongodb.DuplicateKeyException
@@ -39,7 +40,14 @@ class APIExceptionHandler {
     @ResponseBody
     fun handleAuthentication(request: HttpServletRequest, e: Exception) : ErrorRespuesta {
         e.printStackTrace()
-        return ErrorRespuesta("Unauthorized (409).", e.message!!, request.requestURI)
+        return ErrorRespuesta("Unauthorized (401).", e.message!!, request.requestURI)
+    }
+    @ExceptionHandler(Forbidden::class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseBody
+    fun handleForbidden(request: HttpServletRequest, e: Exception) : ErrorRespuesta {
+        e.printStackTrace()
+        return ErrorRespuesta("Forbidden (403).", e.message!!, request.requestURI)
     }
 
     @ExceptionHandler(Exception::class, NullPointerException::class) 

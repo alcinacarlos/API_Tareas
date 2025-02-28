@@ -1,5 +1,6 @@
 package com.es.carlostareas.controller
 
+import com.es.carlostareas.dto.TareaInsertDTO
 import com.es.carlostareas.model.Tarea
 import com.es.carlostareas.service.TareaService
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,11 +22,10 @@ class TareaController {
 
     @PostMapping
     fun crearTarea(
-        @RequestParam titulo: String,
-        @RequestParam descripcion: String,
-        @RequestParam(required = false) usuarioId: String?
+        @RequestBody tarea: TareaInsertDTO
     ): ResponseEntity<Tarea> {
-        return ResponseEntity(tareaService.crearTarea(titulo, descripcion, usuarioId), HttpStatus.OK)
+        val tareaC = tareaService.crearTarea(tarea)
+        return ResponseEntity(tareaC, HttpStatus.CREATED)
     }
 
     @PutMapping("/{tareaId}/completar")
