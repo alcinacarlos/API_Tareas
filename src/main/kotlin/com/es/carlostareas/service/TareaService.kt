@@ -50,12 +50,18 @@ class TareaService {
     fun marcarComoHecha(tareaId: String) {
         val auth = SecurityContextHolder.getContext().authentication
         val tarea = tareaRepository.findById(tareaId).orElseThrow { BadRequestException("Tarea no encontrada") }
+        val esAdmin = auth.authorities.any { it.authority == "ROLE_ADMIN" }
 
-        if (tarea.usuarioId != auth.name) {
+
+        if (tarea.usuarioId != auth.name && !esAdmin) {
             throw UnauthorizedException("No puedes marcar como hecha una tarea que no es tuya")
         }
+        if (tarea.completada) {
+            tareaRepository.save(tarea.copy(completada = false))
+        }else{
+            tareaRepository.save(tarea.copy(completada = true))
 
-        tareaRepository.save(tarea.copy(completada = true))
+        }
     }
 
     fun eliminarTarea(tareaId: String) {
