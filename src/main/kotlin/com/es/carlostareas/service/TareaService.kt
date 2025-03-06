@@ -54,8 +54,12 @@ class TareaService {
         if (tarea.usuarioId != auth.name) {
             throw UnauthorizedException("No puedes marcar como hecha una tarea que no es tuya")
         }
+        if (tarea.completada) {
+            tareaRepository.save(tarea.copy(completada = false))
+        }else{
+            tareaRepository.save(tarea.copy(completada = true))
 
-        tareaRepository.save(tarea.copy(completada = true))
+        }
     }
 
     fun eliminarTarea(tareaId: String) {
