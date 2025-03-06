@@ -1,4 +1,5 @@
 # TaskMaster
+# Render: https://api-tareas-1vo7.onrender.com
 ## Descripción de los documentos
 ## Direccion
 
@@ -88,26 +89,65 @@
 
 ---
 
-# Pruebas gestión usuarios
-- Contraseña no coincide
-  ![img.png](images/ui/img.png)
-  ![Imagen](images/insomnia/passworddontmatch.png)
-- Usuario ya registrado
-  ![yaregistrado.png](images/ui/yaregistrado.png)
-  ![Imagen](images/insomnia/yaregistrado.png)
-- Email inválido
-  ![img_1.png](images/ui/img_1.png)
-  ![Imagen](images/insomnia/errormail.png)
-- Municipio inválido
-  ![img_2.png](images/ui/img_2.png)
-  ![Imagen](images/insomnia/errormunicipio.png)
-- Usuario registrado correctamente
+# PRUEBAS GESTIÓN USUARIOS
+
+## 1. Registro de usuario
+
+### ✅ Usuario registrado correctamente
+- **Descripción:** Un usuario se registra correctamente en el sistema.
+- **Método:** `POST /usuarios/registro`
+- **Código de estado esperado:** `201 Created`
+
   ![Imagen](images/insomnia/usuariocreado.png)
   ![Imagen](images/insomnia/usuarioenmongo.png)
-- Usuario logeado
-    ![Imagen](images/insomnia/usuariologeado.png)
-- Credenciales inválidas
-    ![Imagen](images/insomnia/credencialesincorrectas.png)
+
+### ❌ Errores posibles
+
+#### 1.1 Contraseña no coincide
+- **Código de estado esperado:** `400 Bad Request`
+
+  ![img.png](images/ui/img.png)
+  ![Imagen](images/insomnia/passworddontmatch.png)
+
+#### 1.2 Usuario ya registrado
+- **Código de estado esperado:** `409 Conflict`
+
+  ![yaregistrado.png](images/ui/yaregistrado.png)
+  ![Imagen](images/insomnia/yaregistrado.png)
+
+#### 1.3 Email inválido
+- **Código de estado esperado:** `400 Bad Request`
+
+  ![img_1.png](images/ui/img_1.png)
+  ![Imagen](images/insomnia/errormail.png)
+
+#### 1.4 Municipio inválido
+- **Código de estado esperado:** `400 Bad Request`
+
+  ![img_2.png](images/ui/img_2.png)
+  ![Imagen](images/insomnia/errormunicipio.png)
+
+---
+
+## 2. Inicio de sesión
+
+### ✅ Usuario logueado correctamente
+- **Descripción:** Un usuario inicia sesión con éxito.
+- **Método:** `POST /usuarios/login`
+- **Código de estado esperado:** `200 OK`
+
+  ![Imagen](images/insomnia/usuariologeado.png)
+
+### ❌ Errores posibles
+
+#### 2.1 Credenciales inválidas
+- **Código de estado esperado:** `401 Unauthorized`
+
+  ![Imagen](images/insomnia/credencialesincorrectas.png)
+
+---
+
+
 
 # PRUEBAS GESTIÓN TAREAS
 ## Pruebas para Usuario con Rol `USER`
